@@ -1,33 +1,33 @@
-# Astro Starter Kit: Minimal
+# Digital Card - Personal Business Card
 
-```sh
-npm create astro@latest -- --template minimal
+Personal developer landing page built with Astro and Tailwind CSS.
+
+🌐 **Live Site:** [https://mrgovor64.github.io/digital-card](https://mrgovor64.github.io/digital-card)
+
+## 🚀 Tech Stack
+
+- [Astro](https://astro.build) - Static site generator
+- [Tailwind CSS](https://tailwindcss.com) - Utility-first CSS framework
+- TypeScript - Type safety
+
+## 📦 Project Structure
+
 ```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
 /
 ├── public/
+│   ├── images/          # Profile images and badges
+│   └── favicon.svg
 ├── src/
-│   └── pages/
-│       └── index.astro
+│   ├── components/
+│   │   └── icons/       # SVG icon components
+│   ├── pages/
+│   │   └── index.astro  # Main page
+│   └── styles/
+│       └── global.css   # Global styles
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
+## 🛠️ Commands
 
 | Command                   | Action                                           |
 | :------------------------ | :----------------------------------------------- |
@@ -35,9 +35,21 @@ All commands are run from the root of the project, from a terminal:
 | `npm run dev`             | Starts local dev server at `localhost:4321`      |
 | `npm run build`           | Build your production site to `./dist/`          |
 | `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
 
-## 👀 Want to learn more?
+## 🚀 Deployment
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+This project is automatically deployed to GitHub Pages using GitHub Actions.
+
+### Setup GitHub Pages:
+
+1. Go to your repository settings on GitHub
+2. Navigate to **Pages** section
+3. Under **Source**, select **Deploy from a branch**
+4. Select branch: `gh-pages` and folder: `/ (root)`
+5. Push to `main` branch - the workflow will automatically build and deploy to `gh-pages` branch
+
+The site will be available at: `https://mrgovor64.github.io/digital-card`
+
+## 📝 License
+
+Personal project - All rights reserved.
