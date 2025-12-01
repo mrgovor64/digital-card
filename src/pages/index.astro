@@ -23,9 +23,14 @@ import "../styles/global.css";
         <div class="text-center mb-16 animate-fade-in">
           <div class="inline-block mb-6">
             <div
-              class="w-32 h-32 rounded-full bg-gradient-to-br from-purple-400 to-pink-400 mx-auto flex items-center justify-center text-5xl font-bold shadow-2xl"
+              class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto overflow-hidden shadow-2xl ring-4 ring-purple-400/30"
             >
-              VG
+              <img
+                src="/images/profile.jpeg"
+                alt="Vladimir Govorukhin"
+                class="w-full h-full object-cover"
+                onerror="this.onerror=null; this.src='/images/profile.jpeg';"
+              />
             </div>
           </div>
           <h1
