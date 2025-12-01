@@ -13,6 +13,7 @@ import LinkIcon from "../components/icons/LinkIcon.astro";
 import GitHubIcon from "../components/icons/GitHubIcon.astro";
 import LinkedInIcon from "../components/icons/LinkedInIcon.astro";
 import InstagramIcon from "../components/icons/InstagramIcon.astro";
+import CertificationIcon from "../components/icons/CertificationIcon.astro";
 ---
 
 <html lang="en">
@@ -210,6 +211,58 @@ import InstagramIcon from "../components/icons/InstagramIcon.astro";
                 class="px-4 py-2 bg-purple-500/20 border border-purple-400/30 rounded-full text-sm"
                 >Spanish (basic)</span
               >
+            </div>
+          </section>
+
+          <!-- Certifications Section -->
+          <section class="mb-8">
+            <h2
+              class="text-2xl font-semibold mb-6 text-purple-300 flex items-center gap-2"
+            >
+              <CertificationIcon class="w-6 h-6" />
+              Certifications
+            </h2>
+            <div class="flex flex-wrap gap-4">
+              <a
+                href="https://cp.certmetrics.com/amazon/en/public/verify/credential/16a2988039e84ce490a0c3ea7030ac08"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group"
+              >
+                <img
+                  src="/images/badges/aws-devops-professional.png"
+                  alt="AWS Certified DevOps Engineer - Professional"
+                  class="h-20 md:h-24 transition-all duration-300 group-hover:scale-105 group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.3)]"
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+                />
+                <div
+                  class="hidden h-20 md:h-24 w-auto bg-white/10 rounded-lg border border-white/20 flex items-center justify-center px-4"
+                >
+                  <span class="text-sm text-gray-300"
+                    >AWS DevOps Professional</span
+                  >
+                </div>
+              </a>
+              <a
+                href="https://cp.certmetrics.com/amazon/en/public/verify/credential/PE5WYGBB3NFQQ0W8"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group"
+              >
+                <img
+                  src="/images/badges/aws-certified-solutions-architect-associate.png"
+                  alt="AWS Certified Solutions Architect - Associate"
+                  class="h-20 md:h-24 transition-all duration-300 group-hover:scale-105 group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.3)]"
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+                />
+                <div
+                  class="hidden h-20 md:h-24 w-auto bg-white/10 rounded-lg border border-white/20 flex items-center justify-center px-4"
+                >
+                  <span class="text-sm text-gray-300"
+                    >AWS Solutions Architect Associate</span
+                  >
+                </div>
+              </a>
             </div>
           </section>
 
