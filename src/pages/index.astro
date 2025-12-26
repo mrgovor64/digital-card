@@ -58,7 +58,7 @@ import CertificationIcon from "../components/icons/CertificationIcon.astro";
             class="text-lg md:text-xl font-medium text-gray-300 mb-4 italic tracking-tight"
           >
             <span
-              class="transition-all duration-300 hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] cursor-default inline-block"
+              class="motto-text transition-all duration-300 cursor-default inline-block"
             >
               Automation first. Security always.
             </span>
@@ -359,6 +359,13 @@ import CertificationIcon from "../components/icons/CertificationIcon.astro";
       .animate-fade-in {
         animation: fade-in 0.6s ease-out;
       }
+
+      /* Эффект подсветки */
+      .motto-text.active,
+      .motto-text:hover {
+        color: white;
+        filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.3));
+      }
     </style>
 
     <script is:inline>
@@ -405,6 +412,22 @@ import CertificationIcon from "../components/icons/CertificationIcon.astro";
             document.body.removeChild(textArea);
           });
       }
+
+      // Эффект появляется через 3 сек, исчезает через 10 сек
+      (function () {
+        const mottoText = document.querySelector(".motto-text");
+        if (!mottoText) return;
+
+        // Включаем эффект через 3 секунды
+        setTimeout(() => {
+          mottoText.classList.add("active");
+        }, 3000);
+
+        // Выключаем эффект через 10 секунд
+        setTimeout(() => {
+          mottoText.classList.remove("active");
+        }, 10000);
+      })();
     </script>
   </body>
 </html>
