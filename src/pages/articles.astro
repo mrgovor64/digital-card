@@ -60,7 +60,7 @@ articles.sort((a, b) => {
                     <h2 class="text-2xl md:text-3xl font-semibold mb-3">
                       <a
                         href={`/articles/${slug}`}
-                        class="text-purple-300 hover:text-purple-200 transition-colors duration-300"
+                        class="text-purple-300 transition-colors duration-300 hover:text-purple-200"
                       >
                         {frontmatter.title || "Untitled"}
                       </a>
@@ -80,7 +80,7 @@ articles.sort((a, b) => {
 
                     <a
                       href={`/articles/${slug}`}
-                      class="inline-block text-purple-400 hover:text-purple-300 transition-colors duration-300 font-medium"
+                      class="inline-block text-purple-400 transition-colors duration-300 hover:text-purple-300 font-medium"
                     >
                       Read article
                     </a>
@@ -108,5 +108,18 @@ articles.sort((a, b) => {
   }
   .animate-fade-in {
     animation: fade-in 0.6s ease-out;
+  }
+
+  /* Ensure link hovers work properly */
+  article a {
+    transition: color 0.3s ease;
+  }
+
+  article h2 a:hover {
+    color: rgb(221 214 254) !important; /* purple-200 */
+  }
+
+  article a:not(h2 a):hover {
+    color: rgb(196 181 253) !important; /* purple-300 */
   }
 </style>
