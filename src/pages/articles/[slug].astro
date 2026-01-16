@@ -1,8 +1,8 @@
 ---
-import "../styles/global.css";
+import "../../styles/global.css";
 
 export async function getStaticPaths() {
-  const articles = await Astro.glob("../../content/articles/*.md");
+  const articles = await Astro.glob("../../../content/articles/*.md");
 
   return articles.map((article) => {
     const slug = article.file.split("/").pop()?.replace(".md", "") || "";
