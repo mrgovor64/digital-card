@@ -1,5 +1,6 @@
 ---
 import "../../styles/global.css";
+import Layout from "../../components/Layout.astro";
 
 // @ts-ignore
 export async function getStaticPaths(): Promise<any[]> {
@@ -24,89 +25,77 @@ const date = frontmatter.date
       day: "numeric",
     })
   : null;
+
+const title = `${frontmatter.title || "Untitled"} - Vladimir Govorukhin`;
+const description = frontmatter.description || "Article by Vladimir Govorukhin";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="generator" content={Astro.generator} />
-    <meta
-      name="description"
-      content={frontmatter.description || "Article by Vladimir Govorukhin"}
-    />
-    <title>{frontmatter.title || "Untitled"} - Vladimir Govorukhin</title>
-  </head>
-  <body
-    class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white"
-  >
-    <main class="container mx-auto px-4 py-16">
-      <div class="max-w-4xl mx-auto">
-        <!-- Back link -->
-        <div class="mb-6">
-          <a
-            href="/articles"
-            class="inline-block text-gray-400 transition-colors duration-300 hover:text-purple-400 text-sm"
-          >
-            ← Back to Articles
-          </a>
-        </div>
+<Layout title={title} description={description}>
+  <main class="container mx-auto px-4 py-16">
+    <div class="max-w-4xl mx-auto">
+      <!-- Back link -->
+      <div class="mb-6">
+        <a
+          href="/articles"
+          class="inline-block text-gray-400 transition-colors duration-300 hover:text-purple-400 text-sm"
+        >
+          ← Back to Articles
+        </a>
+      </div>
 
-        <!-- Header Section -->
-        <header class="text-center mb-16 animate-fade-in">
-          <h1
-            class="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
-          >
-            {frontmatter.title || "Untitled"}
-          </h1>
+      <!-- Header Section -->
+      <header class="text-center mb-16 animate-fade-in">
+        <h1
+          class="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
+        >
+          {frontmatter.title || "Untitled"}
+        </h1>
 
-          <div
-            class="flex flex-wrap items-center justify-center gap-3 text-gray-400 text-sm mb-4"
-          >
-            {date && <time>{date}</time>}
-            {
-              frontmatter.externalPublication && date && (
-                <span class="text-gray-500">•</span>
-              )
-            }
-            {
-              frontmatter.externalPublication && (
-                <span class="text-gray-400 italic">
-                  Originally published on{" "}
-                  {frontmatter.externalPublicationUrl ? (
-                    <a
-                      href={frontmatter.externalPublicationUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      class="text-purple-400 transition-colors duration-300 hover:text-purple-300 underline"
-                    >
-                      {frontmatter.externalPublication}
-                    </a>
-                  ) : (
-                    <span>{frontmatter.externalPublication}</span>
-                  )}
-                </span>
-              )
-            }
-          </div>
-
+        <div
+          class="flex flex-wrap items-center justify-center gap-3 text-gray-400 text-sm mb-4"
+        >
+          {date && <time>{date}</time>}
           {
-            frontmatter.description && (
-              <p class="text-xl text-gray-400 leading-relaxed">
-                {frontmatter.description}
-              </p>
+            frontmatter.externalPublication && date && (
+              <span class="text-gray-500">•</span>
             )
           }
-        </header>
+          {
+            frontmatter.externalPublication && (
+              <span class="text-gray-400 italic">
+                Originally published on{" "}
+                {frontmatter.externalPublicationUrl ? (
+                  <a
+                    href={frontmatter.externalPublicationUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-purple-400 transition-colors duration-300 hover:text-purple-300 underline"
+                  >
+                    {frontmatter.externalPublication}
+                  </a>
+                ) : (
+                  <span>{frontmatter.externalPublication}</span>
+                )}
+              </span>
+            )
+          }
+        </div>
 
-        <!-- Article Content -->
-        <article
-          class="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 md:p-12 border border-white/20 prose prose-invert prose-lg max-w-none prose-headings:text-purple-300 prose-headings:font-semibold prose-a:text-purple-400 prose-a:no-underline hover:prose-a:underline prose-code:text-purple-300 prose-code:bg-white/10 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-pre:bg-slate-900 prose-pre:border prose-pre:border-white/20 prose-strong:text-white prose-em:text-gray-300"
-        >
-          <Content />
-        </article>
-      </div>
-    </main>
-  </body>
-</html>
+        {
+          frontmatter.description && (
+            <p class="text-xl text-gray-400 leading-relaxed">
+              {frontmatter.description}
+            </p>
+          )
+        }
+      </header>
+
+      <!-- Article Content -->
+      <article
+        class="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 md:p-12 border border-white/20 prose prose-invert prose-lg max-w-none prose-headings:text-purple-300 prose-headings:font-semibold prose-a:text-purple-400 prose-a:no-underline hover:prose-a:underline prose-code:text-purple-300 prose-code:bg-white/10 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-pre:bg-slate-900 prose-pre:border prose-pre:border-white/20 prose-strong:text-white prose-em:text-gray-300"
+      >
+        <Content />
+      </article>
+    </div>
+  </main>
+</Layout>

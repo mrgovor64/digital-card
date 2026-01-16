@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import Layout from "../components/Layout.astro";
 const articles = await Astro.glob("../../content/articles/*.md");
 
 // Sort articles by date (newest first)
@@ -10,18 +11,10 @@ articles.sort((a, b) => {
 });
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="generator" content={Astro.generator} />
-    <meta name="description" content="Articles archive - Vladimir Govorukhin" />
-    <title>Articles - Vladimir Govorukhin</title>
-  </head>
-  <body
-    class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white"
-  >
+<Layout
+  title="Articles - Vladimir Govorukhin"
+  description="Articles archive - Vladimir Govorukhin"
+>
     <main class="container mx-auto px-4 py-16">
       <div class="max-w-4xl mx-auto">
         <!-- Header Section -->
@@ -92,24 +85,9 @@ articles.sort((a, b) => {
         }
       </div>
     </main>
-  </body>
-</html>
+</Layout>
 
 <style>
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  .animate-fade-in {
-    animation: fade-in 0.6s ease-out;
-  }
-
   /* Ensure link hovers work properly */
   article a {
     transition: color 0.3s ease;

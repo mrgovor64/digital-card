@@ -1,0 +1,83 @@
+/* Custom prose styles for articles - override Tailwind Typography defaults */
+
+/* Custom prose styles with higher specificity to override Tailwind Typography */
+.prose {
+  color: #e2e8f0 !important;
+}
+
+.prose :where(p):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  margin-top: 0.875em !important;
+  margin-bottom: 0.875em !important;
+  line-height: 1.75;
+}
+
+.prose :where(h1, h2, h3, h4):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  margin-top: 1.25em !important;
+  margin-bottom: 0.75em !important;
+  font-weight: 600;
+}
+
+.prose :where(h2):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  font-size: 1.875em;
+}
+
+.prose :where(h3):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  font-size: 1.5em;
+}
+
+.prose :where(ul, ol):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  margin-top: 0.875em !important;
+  margin-bottom: 0.875em !important;
+  padding-left: 1.625em;
+}
+
+.prose :where(li):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  margin-top: 0.375em !important;
+  margin-bottom: 0.375em !important;
+}
+
+/* Style list bullets/markers - make them more visible on dark background */
+.prose :where(ul > li):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  list-style-type: disc;
+}
+
+.prose :where(ul > li):not(:where([class~="not-prose"], [class~="not-prose"] *))::marker {
+  color: #a78bfa !important;
+  /* purple-400 */
+}
+
+.prose :where(ol > li):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  list-style-type: decimal;
+}
+
+.prose :where(ol > li):not(:where([class~="not-prose"], [class~="not-prose"] *))::marker {
+  color: #a78bfa !important;
+  /* purple-400 */
+}
+
+.prose :where(blockquote):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  margin-top: 1em !important;
+  margin-bottom: 1em !important;
+  padding-left: 1em !important;
+  padding: 0.75em 1em !important;
+  border-left: 0.25em solid #a78bfa !important;
+  /* purple-400 */
+  border-inline-start-color: #a78bfa !important;
+  color: #cbd5e1 !important;
+  /* gray-300 */
+  background-color: rgba(139, 92, 246, 0.1) !important;
+  /* purple-500 with opacity */
+  border-radius: 0.25rem;
+}
+
+.prose :where(hr):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  margin-top: 2em !important;
+  margin-bottom: 2em !important;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.prose :where(img):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  margin-top: 1.5em !important;
+  margin-bottom: 1.5em !important;
+  border-radius: 0.5rem;
+}
