@@ -1,0 +1,108 @@
+---
+import "../styles/global.css";
+const articles = await Astro.glob("../../content/articles/*.md");
+
+// Sort articles by date (newest first)
+articles.sort((a, b) => {
+  const dateA = new Date(a.frontmatter.date || 0);
+  const dateB = new Date(b.frontmatter.date || 0);
+  return dateB.getTime() - dateA.getTime();
+});
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content="Articles archive - Vladimir Govorukhin" />
+    <title>Articles - Vladimir Govorukhin</title>
+  </head>
+  <body
+    class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white"
+  >
+    <main class="container mx-auto px-4 py-16">
+      <div class="max-w-4xl mx-auto">
+        <header class="mb-12">
+          <h1
+            class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
+          >
+            Articles
+          </h1>
+          <p class="text-gray-400 text-lg">
+            A collection of thoughts and writings
+          </p>
+        </header>
+
+        {
+          articles.length === 0 ? (
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 border border-white/20">
+              <p class="text-gray-400 text-center">No articles yet.</p>
+            </div>
+          ) : (
+            <div class="space-y-6">
+              {articles.map((article) => {
+                const slug =
+                  article.file.split("/").pop()?.replace(".md", "") || "";
+                const frontmatter = article.frontmatter;
+                const date = frontmatter.date
+                  ? new Date(frontmatter.date).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })
+                  : null;
+
+                return (
+                  <article class="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-6 md:p-8 border border-white/20 hover:bg-white/15 transition-all duration-300">
+                    <h2 class="text-2xl md:text-3xl font-semibold mb-3 text-purple-300">
+                      <a
+                        href={`/articles/${slug}`}
+                        class="hover:text-purple-200 transition-colors duration-300"
+                      >
+                        {frontmatter.title || "Untitled"}
+                      </a>
+                    </h2>
+
+                    {date && (
+                      <time class="text-gray-400 text-sm mb-4 block">
+                        {date}
+                      </time>
+                    )}
+
+                    {frontmatter.description && (
+                      <p class="text-gray-300 mb-4 leading-relaxed">
+                        {frontmatter.description}
+                      </p>
+                    )}
+
+                    <a
+                      href={`/articles/${slug}`}
+                      class="inline-flex items-center text-purple-400 hover:text-purple-300 transition-colors duration-300 text-sm font-medium"
+                    >
+                      Read more
+                      <svg
+                        class="w-4 h-4 ml-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </a>
+                  </article>
+                );
+              })}
+            </div>
+          )
+        }
+      </div>
+    </main>
+  </body>
+</html>

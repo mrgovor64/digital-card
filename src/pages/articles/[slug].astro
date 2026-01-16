@@ -1,0 +1,179 @@
+---
+import "../styles/global.css";
+
+export async function getStaticPaths() {
+  const articles = await Astro.glob("../../content/articles/*.md");
+
+  return articles.map((article) => {
+    const slug = article.file.split("/").pop()?.replace(".md", "") || "";
+    return {
+      params: { slug },
+      props: { article },
+    };
+  });
+}
+
+const { article } = Astro.props;
+const { Content, frontmatter } = article;
+const date = frontmatter.date
+  ? new Date(frontmatter.date).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    })
+  : null;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta
+      name="description"
+      content={frontmatter.description || "Article by Vladimir Govorukhin"}
+    />
+    <title>{frontmatter.title || "Untitled"} - Vladimir Govorukhin</title>
+  </head>
+  <body
+    class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white"
+  >
+    <main class="container mx-auto px-4 py-16">
+      <div class="max-w-3xl mx-auto">
+        <header class="mb-8">
+          <a
+            href="/articles"
+            class="inline-flex items-center text-gray-400 hover:text-purple-400 transition-colors duration-300 text-sm mb-6"
+          >
+            <svg
+              class="w-4 h-4 mr-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 19l-7-7 7-7"></path>
+            </svg>
+            Back to Articles
+          </a>
+
+          <h1
+            class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
+          >
+            {frontmatter.title || "Untitled"}
+          </h1>
+
+          <div
+            class="flex flex-wrap items-center gap-4 text-gray-400 text-sm mb-6"
+          >
+            {date && <time>{date}</time>}
+            {
+              frontmatter.externalPublication && (
+                <span class="text-gray-500">•</span>
+              )
+            }
+            {
+              frontmatter.externalPublication && (
+                <span class="text-gray-400 italic">
+                  Originally published on{" "}
+                  {frontmatter.externalPublicationUrl ? (
+                    <a
+                      href={frontmatter.externalPublicationUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-purple-400 hover:text-purple-300 transition-colors duration-300 underline"
+                    >
+                      {frontmatter.externalPublication}
+                    </a>
+                  ) : (
+                    <span>{frontmatter.externalPublication}</span>
+                  )}
+                </span>
+              )
+            }
+          </div>
+
+          {
+            frontmatter.description && (
+              <p class="text-xl text-gray-300 mb-8 leading-relaxed">
+                {frontmatter.description}
+              </p>
+            )
+          }
+        </header>
+
+        <article
+          class="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 md:p-12 border border-white/20 prose prose-invert prose-lg max-w-none prose-headings:text-purple-300 prose-headings:font-semibold prose-a:text-purple-400 prose-a:no-underline hover:prose-a:underline prose-code:text-purple-300 prose-code:bg-white/10 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-pre:bg-slate-900 prose-pre:border prose-pre:border-white/20 prose-strong:text-white prose-em:text-gray-300"
+        >
+          <Content />
+        </article>
+      </div>
+    </main>
+  </body>
+</html>
+
+<style>
+  /* Custom prose styles for better readability */
+  .prose {
+    color: #e2e8f0;
+  }
+
+  .prose p {
+    margin-top: 1.25em;
+    margin-bottom: 1.25em;
+    line-height: 1.75;
+  }
+
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4 {
+    margin-top: 2em;
+    margin-bottom: 1em;
+    font-weight: 600;
+  }
+
+  .prose h2 {
+    font-size: 1.875em;
+  }
+
+  .prose h3 {
+    font-size: 1.5em;
+  }
+
+  .prose ul,
+  .prose ol {
+    margin-top: 1.25em;
+    margin-bottom: 1.25em;
+    padding-left: 1.625em;
+  }
+
+  .prose li {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+
+  .prose blockquote {
+    margin-top: 1.6em;
+    margin-bottom: 1.6em;
+    padding-left: 1em;
+    border-left: 0.25em solid rgba(196, 181, 253, 0.5);
+    color: #cbd5e1;
+  }
+
+  .prose hr {
+    margin-top: 3em;
+    margin-bottom: 3em;
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .prose img {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    border-radius: 0.5rem;
+  }
+</style>
