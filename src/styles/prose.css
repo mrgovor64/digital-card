@@ -6,10 +6,19 @@
 }
 
 .prose :where(p):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
-  margin-top: 0.875em !important;
-  margin-bottom: 0.875em !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
   line-height: 1.75;
 }
+
+.prose :where(p):not(:where([class~="not-prose"], [class~="not-prose"] *))::before {
+  content: none;
+}
+
+.prose :where(p):not(:where([class~="not-prose"], [class~="not-prose"] *))::after {
+  content: none;
+}
+
 
 .prose :where(h1, h2, h3, h4):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   margin-top: 1.25em !important;
