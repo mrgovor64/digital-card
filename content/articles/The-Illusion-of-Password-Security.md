@@ -7,7 +7,7 @@ externalPublicationUrl: "https://example.com/illusion-of-password-security"
 ---
 
 Password requirements have become progressively stricter over the last two decades.  
-Longer passwords, special characters, rotation policies, password history, mandatory complexity rules — all of these are widely accepted as indicators of a “secure” system.
+Longer passwords, special characters, rotation policies, password history, mandatory complexity rules – all of these are widely accepted as indicators of a “secure” system.
 
 And yet, large-scale breaches caused by compromised credentials continue to occur with remarkable regularity.
 
