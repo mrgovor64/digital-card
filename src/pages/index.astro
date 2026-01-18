@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import Layout from "../components/Layout.astro";
 import LocationIcon from "../components/icons/LocationIcon.astro";
 import ContactIcon from "../components/icons/ContactIcon.astro";
 import EmailIcon from "../components/icons/EmailIcon.astro";
@@ -16,306 +17,296 @@ import InstagramIcon from "../components/icons/InstagramIcon.astro";
 import CertificationIcon from "../components/icons/CertificationIcon.astro";
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="generator" content={Astro.generator} />
-    <meta
-      name="description"
-      content="Vladimir Govorukhin - DevOps Engineer at EPAM"
-    />
-    <title>Vladimir Govorukhin - DevOps Engineer</title>
-  </head>
-  <body
-    class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white overscroll-none overflow-y-scroll bg-purple-900"
-  >
-    <main class="container mx-auto px-4 py-16">
-      <div class="max-w-4xl mx-auto">
-        <!-- Header Section -->
-        <div class="text-center mb-16 animate-fade-in">
-          <div class="inline-block mb-6">
+<Layout
+  title="Vladimir Govorukhin - DevOps Engineer"
+  description="Vladimir Govorukhin - DevOps Engineer at EPAM"
+  class="overscroll-none overflow-y-scroll bg-purple-900"
+>
+  <main class="container mx-auto px-4 py-16">
+    <div class="max-w-4xl mx-auto">
+      <!-- Header Section -->
+      <div class="text-center mb-16 animate-fade-in">
+        <div class="inline-block mb-6">
+          <div
+            class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto overflow-hidden shadow-2xl ring-4 ring-purple-400/30"
+          >
+            <img
+              src="/images/profile.jpeg"
+              alt="Vladimir Govorukhin"
+              class="w-full h-full object-cover"
+              onerror="this.onerror=null; this.src='/images/profile.jpeg';"
+            />
+          </div>
+        </div>
+        <h1
+          class="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
+        >
+          Vladimir Govorukhin
+        </h1>
+        <p class="text-xl text-purple-300 mb-2">DevOps Engineer</p>
+        <p class="text-lg text-gray-400 mb-3">EPAM Systems</p>
+        <p
+          class="text-lg md:text-xl font-medium text-gray-500 mb-4 italic tracking-tight"
+        >
+          <span
+            class="motto-text transition-all duration-1000 cursor-default inline-block p-1"
+          >
+            Automation first. Security always.
+          </span>
+        </p>
+        <p
+          class="text-md text-gray-500 mt-2 flex items-center justify-center gap-2"
+        >
+          <LocationIcon class="w-4 h-4" />
+          Guadalajara, Mexico
+        </p>
+      </div>
+
+      <!-- Main Card -->
+      <div
+        class="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 md:p-12 mb-8 border border-white/20"
+      >
+        <!-- Contact Information -->
+        <section class="mb-8">
+          <h2
+            class="text-2xl font-semibold mb-6 text-purple-300 flex items-center gap-2"
+          >
+            <ContactIcon class="w-6 h-6" />
+            Contact
+          </h2>
+          <div class="space-y-3">
+            <!-- Email -->
             <div
-              class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto overflow-hidden shadow-2xl ring-4 ring-purple-400/30"
+              class="flex items-center gap-3 p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-300 group"
             >
-              <img
-                src="/images/profile.jpeg"
-                alt="Vladimir Govorukhin"
-                class="w-full h-full object-cover"
-                onerror="this.onerror=null; this.src='/images/profile.jpeg';"
-              />
+              <a
+                href="mailto:mrgovor64@gmail.com"
+                class="flex items-center gap-3 flex-1"
+              >
+                <EmailIcon class="w-5 h-5 text-purple-400" />
+                <span class="text-gray-200 group-hover:text-white"
+                  >mrgovor64@gmail.com</span
+                >
+              </a>
+              <button
+                onclick="copyToClipboard('mrgovor64@gmail.com', this)"
+                class="p-2 hover:bg-white/10 rounded-lg transition-all duration-300 group/copy"
+                title="Copy email"
+              >
+                <CopyIcon
+                  class="w-5 h-5 text-gray-400 group-hover/copy:text-purple-400 copy-icon"
+                />
+                <CheckIcon class="w-5 h-5 text-green-400 hidden check-icon" />
+              </button>
+            </div>
+
+            <!-- Phone -->
+            <div
+              class="flex items-center gap-3 p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-300 group"
+            >
+              <a
+                href="tel:+523332383664"
+                class="flex items-center gap-3 flex-1"
+              >
+                <PhoneIcon class="w-5 h-5 text-purple-400" />
+                <span class="text-gray-200 group-hover:text-white"
+                  >+52 33 3238 3664</span
+                >
+              </a>
+              <button
+                onclick="copyToClipboard('+523332383664', this)"
+                class="p-2 hover:bg-white/10 rounded-lg transition-all duration-300 group/copy"
+                title="Copy phone number"
+              >
+                <CopyIcon
+                  class="w-5 h-5 text-gray-400 group-hover/copy:text-purple-400 copy-icon"
+                />
+                <CheckIcon class="w-5 h-5 text-green-400 hidden check-icon" />
+              </button>
+            </div>
+
+            <!-- Telegram -->
+            <div
+              class="flex items-center gap-3 p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-300 group"
+            >
+              <a
+                href="https://t.me/mr_govor"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-3 flex-1"
+              >
+                <TelegramIcon class="w-5 h-5 text-purple-400" />
+                <span class="text-gray-200 group-hover:text-white"
+                  >@mr_govor</span
+                >
+              </a>
+              <button
+                onclick="copyToClipboard('@mr_govor', this)"
+                class="p-2 hover:bg-white/10 rounded-lg transition-all duration-300 group/copy"
+                title="Copy Telegram username"
+              >
+                <CopyIcon
+                  class="w-5 h-5 text-gray-400 group-hover/copy:text-purple-400 copy-icon"
+                />
+                <CheckIcon class="w-5 h-5 text-green-400 hidden check-icon" />
+              </button>
+            </div>
+
+            <!-- WhatsApp -->
+            <div
+              class="flex items-center gap-3 p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-300 group"
+            >
+              <a
+                href="https://wa.me/523332383664"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-3 flex-1"
+              >
+                <WhatsAppIcon class="w-5 h-5 text-purple-400" />
+                <span class="text-gray-200 group-hover:text-white"
+                  >WhatsApp</span
+                >
+              </a>
+              <button
+                onclick="copyToClipboard('+523332383664', this)"
+                class="p-2 hover:bg-white/10 rounded-lg transition-all duration-300 group/copy"
+                title="Copy WhatsApp number"
+              >
+                <CopyIcon
+                  class="w-5 h-5 text-gray-400 group-hover/copy:text-purple-400 copy-icon"
+                />
+                <CheckIcon class="w-5 h-5 text-green-400 hidden check-icon" />
+              </button>
             </div>
           </div>
-          <h1
-            class="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
+        </section>
+
+        <!-- Languages Section -->
+        <section class="mb-8">
+          <h2
+            class="text-2xl font-semibold mb-6 text-purple-300 flex items-center gap-2"
           >
-            Vladimir Govorukhin
-          </h1>
-          <p class="text-xl text-purple-300 mb-2">DevOps Engineer</p>
-          <p class="text-lg text-gray-400 mb-3">EPAM Systems</p>
-          <p
-            class="text-lg md:text-xl font-medium text-gray-500 mb-4 italic tracking-tight"
-          >
+            <LanguagesIcon class="w-6 h-6" />
+            Languages
+          </h2>
+          <div class="flex flex-wrap gap-3">
             <span
-              class="motto-text transition-all duration-1000 cursor-default inline-block p-1"
+              class="px-4 py-2 bg-purple-500/20 border border-purple-400/30 rounded-full text-sm"
+              >English</span
             >
-              Automation first. Security always.
-            </span>
-          </p>
-          <p
-            class="text-md text-gray-500 mt-2 flex items-center justify-center gap-2"
+            <span
+              class="px-4 py-2 bg-purple-500/20 border border-purple-400/30 rounded-full text-sm"
+              >Russian</span
+            >
+            <span
+              class="px-4 py-2 bg-purple-500/20 border border-purple-400/30 rounded-full text-sm"
+              >Spanish (basic)</span
+            >
+          </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section class="mb-8">
+          <h2
+            class="text-2xl font-semibold mb-6 text-purple-300 flex items-center gap-2"
           >
-            <LocationIcon class="w-4 h-4" />
-            Guadalajara, Mexico
-          </p>
-        </div>
-
-        <!-- Main Card -->
-        <div
-          class="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 md:p-12 mb-8 border border-white/20"
-        >
-          <!-- Contact Information -->
-          <section class="mb-8">
-            <h2
-              class="text-2xl font-semibold mb-6 text-purple-300 flex items-center gap-2"
+            <CertificationIcon class="w-6 h-6" />
+            Certifications
+          </h2>
+          <div class="flex flex-wrap gap-4">
+            <a
+              href="https://cp.certmetrics.com/amazon/en/public/verify/credential/16a2988039e84ce490a0c3ea7030ac08"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group"
             >
-              <ContactIcon class="w-6 h-6" />
-              Contact
-            </h2>
-            <div class="space-y-3">
-              <!-- Email -->
+              <img
+                src="/images/badges/aws-devops-professional.png"
+                alt="AWS Certified DevOps Engineer - Professional"
+                class="h-20 md:h-24 transition-all duration-300 group-hover:scale-105 group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.3)]"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+              />
               <div
-                class="flex items-center gap-3 p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-300 group"
+                class="hidden h-20 md:h-24 w-auto bg-white/10 rounded-lg border border-white/20 flex items-center justify-center px-4"
               >
-                <a
-                  href="mailto:mrgovor64@gmail.com"
-                  class="flex items-center gap-3 flex-1"
+                <span class="text-sm text-gray-300"
+                  >AWS DevOps Professional</span
                 >
-                  <EmailIcon class="w-5 h-5 text-purple-400" />
-                  <span class="text-gray-200 group-hover:text-white"
-                    >mrgovor64@gmail.com</span
-                  >
-                </a>
-                <button
-                  onclick="copyToClipboard('mrgovor64@gmail.com', this)"
-                  class="p-2 hover:bg-white/10 rounded-lg transition-all duration-300 group/copy"
-                  title="Copy email"
-                >
-                  <CopyIcon
-                    class="w-5 h-5 text-gray-400 group-hover/copy:text-purple-400 copy-icon"
-                  />
-                  <CheckIcon class="w-5 h-5 text-green-400 hidden check-icon" />
-                </button>
               </div>
-
-              <!-- Phone -->
-              <div
-                class="flex items-center gap-3 p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-300 group"
-              >
-                <a
-                  href="tel:+523332383664"
-                  class="flex items-center gap-3 flex-1"
-                >
-                  <PhoneIcon class="w-5 h-5 text-purple-400" />
-                  <span class="text-gray-200 group-hover:text-white"
-                    >+52 33 3238 3664</span
-                  >
-                </a>
-                <button
-                  onclick="copyToClipboard('+523332383664', this)"
-                  class="p-2 hover:bg-white/10 rounded-lg transition-all duration-300 group/copy"
-                  title="Copy phone number"
-                >
-                  <CopyIcon
-                    class="w-5 h-5 text-gray-400 group-hover/copy:text-purple-400 copy-icon"
-                  />
-                  <CheckIcon class="w-5 h-5 text-green-400 hidden check-icon" />
-                </button>
-              </div>
-
-              <!-- Telegram -->
-              <div
-                class="flex items-center gap-3 p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-300 group"
-              >
-                <a
-                  href="https://t.me/mr_govor"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="flex items-center gap-3 flex-1"
-                >
-                  <TelegramIcon class="w-5 h-5 text-purple-400" />
-                  <span class="text-gray-200 group-hover:text-white"
-                    >@mr_govor</span
-                  >
-                </a>
-                <button
-                  onclick="copyToClipboard('@mr_govor', this)"
-                  class="p-2 hover:bg-white/10 rounded-lg transition-all duration-300 group/copy"
-                  title="Copy Telegram username"
-                >
-                  <CopyIcon
-                    class="w-5 h-5 text-gray-400 group-hover/copy:text-purple-400 copy-icon"
-                  />
-                  <CheckIcon class="w-5 h-5 text-green-400 hidden check-icon" />
-                </button>
-              </div>
-
-              <!-- WhatsApp -->
-              <div
-                class="flex items-center gap-3 p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-300 group"
-              >
-                <a
-                  href="https://wa.me/523332383664"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="flex items-center gap-3 flex-1"
-                >
-                  <WhatsAppIcon class="w-5 h-5 text-purple-400" />
-                  <span class="text-gray-200 group-hover:text-white"
-                    >WhatsApp</span
-                  >
-                </a>
-                <button
-                  onclick="copyToClipboard('+523332383664', this)"
-                  class="p-2 hover:bg-white/10 rounded-lg transition-all duration-300 group/copy"
-                  title="Copy WhatsApp number"
-                >
-                  <CopyIcon
-                    class="w-5 h-5 text-gray-400 group-hover/copy:text-purple-400 copy-icon"
-                  />
-                  <CheckIcon class="w-5 h-5 text-green-400 hidden check-icon" />
-                </button>
-              </div>
-            </div>
-          </section>
-
-          <!-- Languages Section -->
-          <section class="mb-8">
-            <h2
-              class="text-2xl font-semibold mb-6 text-purple-300 flex items-center gap-2"
+            </a>
+            <a
+              href="https://cp.certmetrics.com/amazon/en/public/verify/credential/PE5WYGBB3NFQQ0W8"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group"
             >
-              <LanguagesIcon class="w-6 h-6" />
-              Languages
-            </h2>
-            <div class="flex flex-wrap gap-3">
-              <span
-                class="px-4 py-2 bg-purple-500/20 border border-purple-400/30 rounded-full text-sm"
-                >English</span
+              <img
+                src="/images/badges/aws-certified-solutions-architect-associate.png"
+                alt="AWS Certified Solutions Architect - Associate"
+                class="h-20 md:h-24 transition-all duration-300 group-hover:scale-105 group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.3)]"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+              />
+              <div
+                class="hidden h-20 md:h-24 w-auto bg-white/10 rounded-lg border border-white/20 flex items-center justify-center px-4"
               >
-              <span
-                class="px-4 py-2 bg-purple-500/20 border border-purple-400/30 rounded-full text-sm"
-                >Russian</span
-              >
-              <span
-                class="px-4 py-2 bg-purple-500/20 border border-purple-400/30 rounded-full text-sm"
-                >Spanish (basic)</span
-              >
-            </div>
-          </section>
+                <span class="text-sm text-gray-300"
+                  >AWS Solutions Architect Associate</span
+                >
+              </div>
+            </a>
+          </div>
+        </section>
 
-          <!-- Certifications Section -->
-          <section class="mb-8">
-            <h2
-              class="text-2xl font-semibold mb-6 text-purple-300 flex items-center gap-2"
+        <!-- Social Links -->
+        <section class="mb-8">
+          <h2
+            class="text-2xl font-semibold mb-6 text-purple-300 flex items-center gap-2"
+          >
+            <LinkIcon class="w-6 h-6" />
+            Social Media
+          </h2>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <a
+              href="https://github.com/mrgovor64"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-300 group flex flex-col items-center gap-2"
             >
-              <CertificationIcon class="w-6 h-6" />
-              Certifications
-            </h2>
-            <div class="flex flex-wrap gap-4">
-              <a
-                href="https://cp.certmetrics.com/amazon/en/public/verify/credential/16a2988039e84ce490a0c3ea7030ac08"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="group"
+              <GitHubIcon
+                class="w-8 h-8 text-gray-300 group-hover:text-white"
+              />
+              <span class="text-sm text-gray-300 group-hover:text-white"
+                >GitHub</span
               >
-                <img
-                  src="/images/badges/aws-devops-professional.png"
-                  alt="AWS Certified DevOps Engineer - Professional"
-                  class="h-20 md:h-24 transition-all duration-300 group-hover:scale-105 group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.3)]"
-                  onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
-                />
-                <div
-                  class="hidden h-20 md:h-24 w-auto bg-white/10 rounded-lg border border-white/20 flex items-center justify-center px-4"
-                >
-                  <span class="text-sm text-gray-300"
-                    >AWS DevOps Professional</span
-                  >
-                </div>
-              </a>
-              <a
-                href="https://cp.certmetrics.com/amazon/en/public/verify/credential/PE5WYGBB3NFQQ0W8"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="group"
-              >
-                <img
-                  src="/images/badges/aws-certified-solutions-architect-associate.png"
-                  alt="AWS Certified Solutions Architect - Associate"
-                  class="h-20 md:h-24 transition-all duration-300 group-hover:scale-105 group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.3)]"
-                  onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
-                />
-                <div
-                  class="hidden h-20 md:h-24 w-auto bg-white/10 rounded-lg border border-white/20 flex items-center justify-center px-4"
-                >
-                  <span class="text-sm text-gray-300"
-                    >AWS Solutions Architect Associate</span
-                  >
-                </div>
-              </a>
-            </div>
-          </section>
-
-          <!-- Social Links -->
-          <section class="mb-8">
-            <h2
-              class="text-2xl font-semibold mb-6 text-purple-300 flex items-center gap-2"
+            </a>
+            <a
+              href="https://www.linkedin.com/in/vladimir-govorukhin-725232219/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-300 group flex flex-col items-center gap-2"
             >
-              <LinkIcon class="w-6 h-6" />
-              Social Media
-            </h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <a
-                href="https://github.com/mrgovor64"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-300 group flex flex-col items-center gap-2"
+              <LinkedInIcon
+                class="w-8 h-8 text-gray-300 group-hover:text-white"
+              />
+              <span class="text-sm text-gray-300 group-hover:text-white"
+                >LinkedIn</span
               >
-                <GitHubIcon
-                  class="w-8 h-8 text-gray-300 group-hover:text-white"
-                />
-                <span class="text-sm text-gray-300 group-hover:text-white"
-                  >GitHub</span
-                >
-              </a>
-              <a
-                href="https://www.linkedin.com/in/vladimir-govorukhin-725232219/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-300 group flex flex-col items-center gap-2"
+            </a>
+            <a
+              href="https://www.instagram.com/mr_govor"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-300 group flex flex-col items-center gap-2"
+            >
+              <InstagramIcon
+                class="w-8 h-8 text-gray-300 group-hover:text-white"
+              />
+              <span class="text-sm text-gray-300 group-hover:text-white"
+                >Instagram</span
               >
-                <LinkedInIcon
-                  class="w-8 h-8 text-gray-300 group-hover:text-white"
-                />
-                <span class="text-sm text-gray-300 group-hover:text-white"
-                  >LinkedIn</span
-                >
-              </a>
-              <a
-                href="https://www.instagram.com/mr_govor"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-300 group flex flex-col items-center gap-2"
-              >
-                <InstagramIcon
-                  class="w-8 h-8 text-gray-300 group-hover:text-white"
-                />
-                <span class="text-sm text-gray-300 group-hover:text-white"
-                  >Instagram</span
-                >
-              </a>
-              <!-- CV Link placeholder - пока не работает -->
-              <!-- <a
+            </a>
+            <!-- CV Link placeholder - пока не работает -->
+            <!-- <a
                 href="#"
                 class="p-4 bg-white/5 rounded-lg hover:bg-white/10 transition-all duration-300 group flex flex-col items-center gap-2 opacity-50 cursor-not-allowed"
               >
@@ -334,94 +325,79 @@ import CertificationIcon from "../components/icons/CertificationIcon.astro";
                 </svg>
                 <span class="text-sm text-gray-300">CV</span>
               </a> -->
-            </div>
-          </section>
-        </div>
-
-        <!-- Footer -->
-        <footer class="text-center text-gray-400 text-sm">
-          <p>© 2024 Vladimir Govorukhin. Built with Astro and Tailwind CSS.</p>
-        </footer>
+          </div>
+        </section>
       </div>
-    </main>
 
-    <style>
-      @keyframes fade-in {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      .animate-fade-in {
-        animation: fade-in 0.6s ease-out;
-      }
+      <!-- Footer -->
+      <footer class="text-center text-gray-400 text-sm">
+        <p>© 2024 Vladimir Govorukhin. Built with Astro and Tailwind CSS.</p>
+      </footer>
+    </div>
+  </main>
 
-      /* Эффект подсветки */
-      .motto-text.active {
-        color: white;
-        filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
-      }
-    </style>
+  <style>
+    /* Эффект подсветки */
+    .motto-text.active {
+      color: white;
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+    }
+  </style>
 
-    <script is:inline>
-      // @ts-nocheck
-      function copyToClipboard(text, button) {
-        navigator.clipboard
-          .writeText(text)
-          .then(() => {
-            // Show check icon
+  <script is:inline>
+    // @ts-nocheck
+    function copyToClipboard(text, button) {
+      navigator.clipboard
+        .writeText(text)
+        .then(() => {
+          // Show check icon
+          const copyIcon = button.querySelector(".copy-icon");
+          const checkIcon = button.querySelector(".check-icon");
+
+          copyIcon.classList.add("hidden");
+          checkIcon.classList.remove("hidden");
+
+          // Reset after 2 seconds
+          setTimeout(() => {
+            copyIcon.classList.remove("hidden");
+            checkIcon.classList.add("hidden");
+          }, 2000);
+        })
+        .catch((err) => {
+          console.error("Failed to copy text: ", err);
+          // Fallback for older browsers
+          const textArea = document.createElement("textarea");
+          textArea.value = text;
+          textArea.style.position = "fixed";
+          textArea.style.opacity = "0";
+          document.body.appendChild(textArea);
+          textArea.select();
+          try {
+            document.execCommand("copy");
             const copyIcon = button.querySelector(".copy-icon");
             const checkIcon = button.querySelector(".check-icon");
-
             copyIcon.classList.add("hidden");
             checkIcon.classList.remove("hidden");
-
-            // Reset after 2 seconds
             setTimeout(() => {
               copyIcon.classList.remove("hidden");
               checkIcon.classList.add("hidden");
             }, 2000);
-          })
-          .catch((err) => {
-            console.error("Failed to copy text: ", err);
-            // Fallback for older browsers
-            const textArea = document.createElement("textarea");
-            textArea.value = text;
-            textArea.style.position = "fixed";
-            textArea.style.opacity = "0";
-            document.body.appendChild(textArea);
-            textArea.select();
-            try {
-              document.execCommand("copy");
-              const copyIcon = button.querySelector(".copy-icon");
-              const checkIcon = button.querySelector(".check-icon");
-              copyIcon.classList.add("hidden");
-              checkIcon.classList.remove("hidden");
-              setTimeout(() => {
-                copyIcon.classList.remove("hidden");
-                checkIcon.classList.add("hidden");
-              }, 2000);
-            } catch (err) {
-              console.error("Fallback copy failed: ", err);
-            }
-            document.body.removeChild(textArea);
-          });
-      }
+          } catch (err) {
+            console.error("Fallback copy failed: ", err);
+          }
+          document.body.removeChild(textArea);
+        });
+    }
 
-      // Эффект появляется через 3 сек, исчезает через 10 сек
-      (function () {
-        const mottoText = document.querySelector(".motto-text");
-        if (!mottoText) return;
+    // Эффект появляется через 3 сек, исчезает через 10 сек
+    (function () {
+      const mottoText = document.querySelector(".motto-text");
+      if (!mottoText) return;
 
-        // Включаем эффект через 3 секунды
-        setTimeout(() => {
-          mottoText.classList.add("active");
-        }, 3000);
-      })();
-    </script>
-  </body>
-</html>
+      // Включаем эффект через 3 секунды
+      setTimeout(() => {
+        mottoText.classList.add("active");
+      }, 3000);
+    })();
+  </script>
+</Layout>

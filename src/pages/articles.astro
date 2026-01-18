@@ -1,0 +1,103 @@
+---
+import "../styles/global.css";
+import Layout from "../components/Layout.astro";
+const articles = await Astro.glob("../../content/articles/*.md");
+
+// Sort articles by date (newest first)
+articles.sort((a, b) => {
+  const dateA = new Date(a.frontmatter.date || 0);
+  const dateB = new Date(b.frontmatter.date || 0);
+  return dateB.getTime() - dateA.getTime();
+});
+---
+
+<Layout
+  title="Articles - Vladimir Govorukhin"
+  description="Articles archive - Vladimir Govorukhin"
+>
+    <main class="container mx-auto px-4 py-16">
+      <div class="max-w-4xl mx-auto">
+        <!-- Header Section -->
+        <header class="text-center mb-16 animate-fade-in">
+          <h1
+            class="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent"
+          >
+            Articles
+          </h1>
+          <p class="text-xl text-gray-400">
+            Selected technical observations and analyses
+          </p>
+        </header>
+
+        {
+          articles.length === 0 ? (
+            <div class="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 md:p-12 border border-white/20">
+              <p class="text-gray-400 text-center">No articles yet.</p>
+            </div>
+          ) : (
+            <div class="space-y-6">
+              {articles.map((article) => {
+                const slug =
+                  article.file.split("/").pop()?.replace(".md", "") || "";
+                const frontmatter = article.frontmatter;
+                const date = frontmatter.date
+                  ? new Date(frontmatter.date).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })
+                  : null;
+
+                return (
+                  <article class="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 md:p-10 border border-white/20 hover:bg-white/15 hover:border-purple-400/30 transition-all duration-300">
+                    <h2 class="text-2xl md:text-3xl font-semibold mb-3">
+                      <a
+                        href={`/articles/${slug}`}
+                        class="text-purple-300 transition-colors duration-300 hover:text-purple-200"
+                      >
+                        {frontmatter.title || "Untitled"}
+                      </a>
+                    </h2>
+
+                    {/* {date && (
+                      <time class="text-gray-400 text-sm mb-4 block">
+                        {date}
+                      </time>
+                    )} */}
+
+                    {frontmatter.description && (
+                      <p class="text-gray-300 mb-6 leading-relaxed text-base md:text-lg">
+                        {frontmatter.description}
+                      </p>
+                    )}
+
+                    <a
+                      href={`/articles/${slug}`}
+                      class="inline-block text-purple-400 transition-colors duration-300 hover:text-purple-300 font-medium"
+                    >
+                      Read article
+                    </a>
+                  </article>
+                );
+              })}
+            </div>
+          )
+        }
+      </div>
+    </main>
+</Layout>
+
+<style>
+  /* Ensure link hovers work properly */
+  article a {
+    transition: color 0.3s ease;
+  }
+
+  article h2 a:hover {
+    color: rgb(221 214 254) !important; /* purple-200 */
+  }
+
+  article a:not(h2 a):hover {
+    color: rgb(196 181 253) !important; /* purple-300 */
+  }
+</style>
