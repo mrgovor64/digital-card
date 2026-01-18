@@ -1,4 +1,12 @@
-<!DOCTYPE html><html lang="en" data-astro-cid-j7pv25f6> <head><meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Astro v5.16.3"><meta name="description" content="Vladimir Govorukhin - DevOps Engineer at EPAM"><title>Vladimir Govorukhin - DevOps Engineer</title><link rel="stylesheet" href="/_astro/index.BAJOD2ea.css"></head> <body class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white overscroll-none overflow-y-scroll bg-purple-900" data-astro-cid-j7pv25f6> <main class="container mx-auto px-4 py-16" data-astro-cid-j7pv25f6> <div class="max-w-4xl mx-auto" data-astro-cid-j7pv25f6> <!-- Header Section --> <div class="text-center mb-16 animate-fade-in" data-astro-cid-j7pv25f6> <div class="inline-block mb-6" data-astro-cid-j7pv25f6> <div class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto overflow-hidden shadow-2xl ring-4 ring-purple-400/30" data-astro-cid-j7pv25f6> <img src="/images/profile.jpeg" alt="Vladimir Govorukhin" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/images/profile.jpeg';" data-astro-cid-j7pv25f6> </div> </div> <h1 class="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent" data-astro-cid-j7pv25f6>
+<!DOCTYPE html><html lang="en" data-astro-cid-dmqsi53g> <head><meta charset="utf-8"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="Astro v5.16.3"><meta name="description" content="Vladimir Govorukhin - DevOps Engineer at EPAM"><title>Vladimir Govorukhin - DevOps Engineer</title><!-- Google Analytics placeholder - uncomment and add your tracking ID --><!-- <script is:inline src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script is:inline define:vars={{ trackingId: "G-XXXXXXXXXX" }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', trackingId);
+    </script> --><link rel="stylesheet" href="/_astro/articles.CfaTPoti.css">
+<style>.motto-text[data-astro-cid-j7pv25f6].active{color:#fff;filter:drop-shadow(0 0 8px rgba(255,255,255,.5))}
+</style></head> <body class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white overscroll-none overflow-y-scroll bg-purple-900" data-astro-cid-dmqsi53g>  <main class="container mx-auto px-4 py-16" data-astro-cid-j7pv25f6> <div class="max-w-4xl mx-auto" data-astro-cid-j7pv25f6> <!-- Header Section --> <div class="text-center mb-16 animate-fade-in" data-astro-cid-j7pv25f6> <div class="inline-block mb-6" data-astro-cid-j7pv25f6> <div class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto overflow-hidden shadow-2xl ring-4 ring-purple-400/30" data-astro-cid-j7pv25f6> <img src="/images/profile.jpeg" alt="Vladimir Govorukhin" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='/images/profile.jpeg';" data-astro-cid-j7pv25f6> </div> </div> <h1 class="text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent" data-astro-cid-j7pv25f6>
 Vladimir Govorukhin
 </h1> <p class="text-xl text-purple-300 mb-2" data-astro-cid-j7pv25f6>DevOps Engineer</p> <p class="text-lg text-gray-400 mb-3" data-astro-cid-j7pv25f6>EPAM Systems</p> <p class="text-lg md:text-xl font-medium text-gray-500 mb-4 italic tracking-tight" data-astro-cid-j7pv25f6> <span class="motto-text transition-all duration-1000 cursor-default inline-block p-1" data-astro-cid-j7pv25f6>
 Automation first. Security always.
@@ -31,58 +39,58 @@ Social Media
                 </svg>
                 <span class="text-sm text-gray-300">CV</span>
               </a> --> </div> </section> </div> <!-- Footer --> <footer class="text-center text-gray-400 text-sm" data-astro-cid-j7pv25f6> <p data-astro-cid-j7pv25f6>© 2024 Vladimir Govorukhin. Built with Astro and Tailwind CSS.</p> </footer> </div> </main>  <script>
-      // @ts-nocheck
-      function copyToClipboard(text, button) {
-        navigator.clipboard
-          .writeText(text)
-          .then(() => {
-            // Show check icon
+    // @ts-nocheck
+    function copyToClipboard(text, button) {
+      navigator.clipboard
+        .writeText(text)
+        .then(() => {
+          // Show check icon
+          const copyIcon = button.querySelector(".copy-icon");
+          const checkIcon = button.querySelector(".check-icon");
+
+          copyIcon.classList.add("hidden");
+          checkIcon.classList.remove("hidden");
+
+          // Reset after 2 seconds
+          setTimeout(() => {
+            copyIcon.classList.remove("hidden");
+            checkIcon.classList.add("hidden");
+          }, 2000);
+        })
+        .catch((err) => {
+          console.error("Failed to copy text: ", err);
+          // Fallback for older browsers
+          const textArea = document.createElement("textarea");
+          textArea.value = text;
+          textArea.style.position = "fixed";
+          textArea.style.opacity = "0";
+          document.body.appendChild(textArea);
+          textArea.select();
+          try {
+            document.execCommand("copy");
             const copyIcon = button.querySelector(".copy-icon");
             const checkIcon = button.querySelector(".check-icon");
-
             copyIcon.classList.add("hidden");
             checkIcon.classList.remove("hidden");
-
-            // Reset after 2 seconds
             setTimeout(() => {
               copyIcon.classList.remove("hidden");
               checkIcon.classList.add("hidden");
             }, 2000);
-          })
-          .catch((err) => {
-            console.error("Failed to copy text: ", err);
-            // Fallback for older browsers
-            const textArea = document.createElement("textarea");
-            textArea.value = text;
-            textArea.style.position = "fixed";
-            textArea.style.opacity = "0";
-            document.body.appendChild(textArea);
-            textArea.select();
-            try {
-              document.execCommand("copy");
-              const copyIcon = button.querySelector(".copy-icon");
-              const checkIcon = button.querySelector(".check-icon");
-              copyIcon.classList.add("hidden");
-              checkIcon.classList.remove("hidden");
-              setTimeout(() => {
-                copyIcon.classList.remove("hidden");
-                checkIcon.classList.add("hidden");
-              }, 2000);
-            } catch (err) {
-              console.error("Fallback copy failed: ", err);
-            }
-            document.body.removeChild(textArea);
-          });
-      }
+          } catch (err) {
+            console.error("Fallback copy failed: ", err);
+          }
+          document.body.removeChild(textArea);
+        });
+    }
 
-      // Эффект появляется через 3 сек, исчезает через 10 сек
-      (function () {
-        const mottoText = document.querySelector(".motto-text");
-        if (!mottoText) return;
+    // Эффект появляется через 3 сек, исчезает через 10 сек
+    (function () {
+      const mottoText = document.querySelector(".motto-text");
+      if (!mottoText) return;
 
-        // Включаем эффект через 3 секунды
-        setTimeout(() => {
-          mottoText.classList.add("active");
-        }, 3000);
-      })();
-    </script> </body> </html>
+      // Включаем эффект через 3 секунды
+      setTimeout(() => {
+        mottoText.classList.add("active");
+      }, 3000);
+    })();
+  </script>   </body> </html>
