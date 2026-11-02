@@ -1,0 +1,18 @@
+---
+import "../styles/global.css";
+import Layout from "../components/Layout.astro";
+---
+
+<Layout
+  title="Page not found | Vladimir Govorukhin"
+  description="The requested page could not be found."
+>
+  <main class="error-page">
+    <p class="error-code">404</p>
+    <h1 class="error-title">Page not found</h1>
+    <p class="error-copy">
+      The address may be outdated, or the page may have moved.
+    </p>
+    <a class="error-link" href="/">Return to the homepage</a>
+  </main>
+</Layout>

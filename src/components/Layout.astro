@@ -1,4 +1,6 @@
 ---
+import { createHash } from "node:crypto";
+
 interface Props {
   title: string;
   description: string;
@@ -18,6 +20,28 @@ const {
 const siteUrl = Astro.site ?? new URL("https://vladimir.govorukhin.net");
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl);
 const socialImageUrl = new URL(image, siteUrl);
+const structuredDataJson = structuredData
+  ? JSON.stringify(structuredData).replaceAll("<", "\\u003c")
+  : "";
+const structuredDataHash = structuredDataJson
+  ? `'sha256-${createHash("sha256").update(structuredDataJson).digest("base64")}'`
+  : "";
+const contentSecurityPolicy = import.meta.env.PROD
+  ? [
+      "default-src 'self'",
+      `script-src 'self' ${structuredDataHash}`.trim(),
+      "style-src 'self'",
+      "img-src 'self' data:",
+      "font-src 'self'",
+      "connect-src 'self'",
+      "media-src 'none'",
+      "object-src 'none'",
+      "frame-src 'none'",
+      "base-uri 'none'",
+      "form-action 'none'",
+      "upgrade-insecure-requests",
+    ].join("; ")
+  : undefined;
 ---
 
 <!doctype html>
@@ -29,6 +53,12 @@ const socialImageUrl = new URL(image, siteUrl);
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0f1020" />
     <meta name="color-scheme" content="dark" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    {
+      contentSecurityPolicy && (
+        <meta http-equiv="Content-Security-Policy" content={contentSecurityPolicy} />
+      )
+    }
 
     <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -40,8 +70,11 @@ const socialImageUrl = new URL(image, siteUrl);
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={socialImageUrl} />
     <meta property="og:image:alt" content="Vladimir Govorukhin" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="800" />
+    <meta property="og:image:height" content="800" />
 
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImageUrl} />
@@ -52,7 +85,7 @@ const socialImageUrl = new URL(image, siteUrl);
       structuredData && (
         <script
           type="application/ld+json"
-          set:html={JSON.stringify(structuredData)}
+          set:html={structuredDataJson}
         />
       )
     }

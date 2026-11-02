@@ -18,6 +18,18 @@ import CertificationIcon from "../components/icons/CertificationIcon.astro";
 import SpeakingIcon from "../components/icons/SpeakingIcon.astro";
 
 const currentYear = new Date().getFullYear();
+const guadalajaraDateParts = new Intl.DateTimeFormat("en-CA", {
+  timeZone: "America/Mexico_City",
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+})
+  .formatToParts(new Date())
+  .reduce<Record<string, string>>((parts, { type, value }) => {
+    if (type !== "literal") parts[type] = value;
+    return parts;
+  }, {});
+const buildDate = `${guadalajaraDateParts.year}-${guadalajaraDateParts.month}-${guadalajaraDateParts.day}`;
 
 const contacts = [
   {
@@ -89,6 +101,7 @@ const speakingEngagements = [
     location: "Guadalajara, Mexico",
     title: "Password123! – How Did We Get Here?",
     type: "Conference talk",
+    upcoming: buildDate < "2026-11-28",
   },
 ];
 
@@ -231,7 +244,11 @@ const personSchema = {
             speakingEngagements.map((event) => (
               <article class="speaking-card" data-event-date={event.date}>
                 <div class="event-topline">
-                  <span class="event-status" data-event-status>Upcoming</span>
+                  {
+                    event.upcoming && (
+                      <span class="event-status" data-event-status>Upcoming</span>
+                    )
+                  }
                   <a class="event-name" href={event.conferenceUrl}>
                     {event.conference}
                     <span aria-hidden="true">↗</span>
@@ -344,82 +361,10 @@ const personSchema = {
     </div>
 
     <footer class="site-footer">
-      <p>© {currentYear} Vladimir Govorukhin</p>
+      <p>© <span data-current-year>{currentYear}</span> Vladimir Govorukhin</p>
       <p>Built with Astro and Tailwind CSS</p>
     </footer>
   </main>
 
-  <script>
-    const copyStatus = document.querySelector("#copy-status");
-
-    async function copyValue(value: string) {
-      if (navigator.clipboard && window.isSecureContext) {
-        await navigator.clipboard.writeText(value);
-        return;
-      }
-
-      const textArea = document.createElement("textarea");
-      textArea.value = value;
-      textArea.setAttribute("readonly", "");
-      textArea.style.position = "fixed";
-      textArea.style.opacity = "0";
-      document.body.appendChild(textArea);
-      textArea.select();
-      const copied = document.execCommand("copy");
-      textArea.remove();
-
-      if (!copied) throw new Error("Copy command failed");
-    }
-
-    document.querySelectorAll<HTMLButtonElement>("[data-copy-value]").forEach((button) => {
-      button.addEventListener("click", async () => {
-        const value = button.dataset.copyValue;
-        const label = button.dataset.copyLabel ?? "value";
-        if (!value) return;
-
-        const buttonLabel = button.querySelector<HTMLElement>(".copy-button-label");
-        const copyIcon = button.querySelector<HTMLElement>(".copy-icon");
-        const checkIcon = button.querySelector<HTMLElement>(".check-icon");
-
-        try {
-          await copyValue(value);
-          buttonLabel?.replaceChildren("Copied!");
-          copyIcon?.classList.add("hidden");
-          checkIcon?.classList.remove("hidden");
-          button.dataset.state = "success";
-          if (copyStatus) copyStatus.textContent = `${label} copied to clipboard.`;
-        } catch (error) {
-          console.error("Unable to copy value", error);
-          buttonLabel?.replaceChildren("Try again");
-          if (copyStatus) copyStatus.textContent = `Unable to copy ${label}.`;
-        }
-
-        window.setTimeout(() => {
-          buttonLabel?.replaceChildren("Copy");
-          copyIcon?.classList.remove("hidden");
-          checkIcon?.classList.add("hidden");
-          delete button.dataset.state;
-        }, 2000);
-      });
-    });
-
-    const guadalajaraDateParts = new Intl.DateTimeFormat("en-CA", {
-      timeZone: "America/Mexico_City",
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    })
-      .formatToParts(new Date())
-      .reduce<Record<string, string>>((parts, { type, value }) => {
-        if (type !== "literal") parts[type] = value;
-        return parts;
-      }, {});
-    const guadalajaraDate = `${guadalajaraDateParts.year}-${guadalajaraDateParts.month}-${guadalajaraDateParts.day}`;
-
-    document.querySelectorAll<HTMLElement>("[data-event-date]").forEach((event) => {
-      const eventDate = event.dataset.eventDate;
-      const status = event.querySelector<HTMLElement>("[data-event-status]");
-      if (eventDate && status && guadalajaraDate >= eventDate) status.remove();
-    });
-  </script>
+  <script is:inline src="/scripts/site.js" defer></script>
 </Layout>

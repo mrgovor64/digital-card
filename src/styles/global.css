@@ -1,6 +1,4 @@
 @import "tailwindcss";
-@plugin "@tailwindcss/typography";
-@import "./prose.css";
 
 :root {
   color-scheme: dark;
@@ -551,6 +549,61 @@ body {
 
 .site-footer p {
   margin: 0;
+}
+
+.error-page {
+  display: grid;
+  min-height: 100vh;
+  width: min(100% - 2rem, 36rem);
+  margin-inline: auto;
+  place-content: center;
+  justify-items: start;
+  padding-block: 3rem;
+}
+
+.error-code {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+}
+
+.error-title {
+  margin: 0.7rem 0 0;
+  color: var(--text-primary);
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  font-weight: 680;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.error-copy {
+  max-width: 32rem;
+  margin: 1.25rem 0 0;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.error-link {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  margin-top: 1.75rem;
+  padding-inline: 1rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 0.75rem;
+  background: var(--accent-soft);
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color 160ms ease, background-color 160ms ease;
+}
+
+.error-link:hover {
+  border-color: rgba(167, 139, 250, 0.42);
+  background: rgba(167, 139, 250, 0.18);
 }
 
 @media (max-width: 680px) {

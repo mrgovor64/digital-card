@@ -5,13 +5,19 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "check": "astro check",
+    "validate": "npm run check && npm run build",
     "preview": "astro preview",
     "astro": "astro"
   },
-  "dependencies": {
-    "@tailwindcss/typography": "^0.5.19",
-    "@tailwindcss/vite": "^4.1.17",
-    "astro": "^5.16.3",
-    "tailwindcss": "^4.1.17"
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.4.5",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^6.0.3"
   }
 }
