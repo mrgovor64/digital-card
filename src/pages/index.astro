@@ -15,6 +15,9 @@ import FacebookIcon from "../components/icons/FacebookIcon.astro";
 import LinkedInIcon from "../components/icons/LinkedInIcon.astro";
 import InstagramIcon from "../components/icons/InstagramIcon.astro";
 import CertificationIcon from "../components/icons/CertificationIcon.astro";
+import SpeakingIcon from "../components/icons/SpeakingIcon.astro";
+
+const currentYear = new Date().getFullYear();
 ---
 
 <Layout
@@ -206,7 +209,7 @@ import CertificationIcon from "../components/icons/CertificationIcon.astro";
             >
             <span
               class="px-4 py-2 bg-purple-500/20 border border-purple-400/30 rounded-full text-sm"
-              >Spanish (basic)</span
+              >Spanish (conversational)</span
             >
           </div>
         </section>
@@ -260,27 +263,59 @@ import CertificationIcon from "../components/icons/CertificationIcon.astro";
                 >
               </div>
             </a>
-            <a
-              href="https://cp.certmetrics.com/amazon/en/public/verify/credential/PE5WYGBB3NFQQ0W8"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="group flex justify-center"
-            >
-              <img
-                src="/images/badges/aws-certified-solutions-architect-associate.png"
-                alt="AWS Certified Solutions Architect - Associate"
-                class="h-24 max-w-full object-contain md:h-32 transition-all duration-300 group-hover:scale-105 group-hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.3)]"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
-              />
-              <div
-                class="hidden h-24 w-full bg-white/10 rounded-lg border border-white/20 flex items-center justify-center px-2 md:h-32"
+            <div class="flex flex-col items-center gap-2">
+              <a
+                href="https://cp.certmetrics.com/amazon/en/public/verify/credential/PE5WYGBB3NFQQ0W8"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group flex justify-center"
               >
-                <span class="text-sm text-gray-300"
-                  >AWS Solutions Architect Associate</span
+                <img
+                  src="/images/badges/aws-certified-solutions-architect-associate.png"
+                  alt="AWS Certified Solutions Architect - Associate (expired)"
+                  class="h-24 max-w-full object-contain opacity-60 grayscale md:h-32 transition-all duration-300 group-hover:scale-105"
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+                />
+                <div
+                  class="hidden h-24 w-full bg-white/10 rounded-lg border border-white/20 flex items-center justify-center px-2 md:h-32"
                 >
-              </div>
-            </a>
+                  <span class="text-sm text-gray-300"
+                    >AWS Solutions Architect Associate</span
+                  >
+                </div>
+              </a>
+              <span class="text-xs font-medium uppercase tracking-wide text-gray-400"
+                >Expired</span
+              >
+            </div>
           </div>
+        </section>
+
+        <!-- Speaking Section -->
+        <section class="mb-8">
+          <h2
+            class="text-2xl font-semibold mb-6 text-purple-300 flex items-center gap-2"
+          >
+            <SpeakingIcon class="w-6 h-6" />
+            Speaking
+          </h2>
+          <article
+            class="bg-white/5 rounded-lg border border-white/10 p-6 md:p-8"
+          >
+            <div class="flex flex-wrap items-center gap-3 mb-3">
+              <span
+                id="speaking-status"
+                class="rounded-full bg-purple-500/20 border border-purple-400/30 px-3 py-1 text-xs font-medium uppercase tracking-wide text-purple-200"
+                >Upcoming</span
+              >
+              <span class="text-sm text-gray-400"
+                >POSADEV 2026 · November 28 · Guadalajara</span
+              >
+            </div>
+            <h3 class="text-xl md:text-2xl font-semibold text-gray-100">
+              Password123! – How Did We Get Here?
+            </h3>
+          </article>
         </section>
 
         <!-- Social Links -->
@@ -357,7 +392,7 @@ import CertificationIcon from "../components/icons/CertificationIcon.astro";
 
       <!-- Footer -->
       <footer class="text-center text-gray-400 text-sm">
-        <p>© 2024 Vladimir Govorukhin. Built with Astro and Tailwind CSS.</p>
+        <p>© {currentYear} Vladimir Govorukhin. Built with Astro and Tailwind CSS.</p>
       </footer>
     </div>
   </main>
@@ -424,6 +459,29 @@ import CertificationIcon from "../components/icons/CertificationIcon.astro";
       setTimeout(() => {
         mottoText.classList.add("active");
       }, 3000);
+    })();
+
+    (function () {
+      const status = document.querySelector("#speaking-status");
+      if (!status) return;
+
+      const formatter = new Intl.DateTimeFormat("en-CA", {
+        timeZone: "America/Mexico_City",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      });
+      const dateParts = Object.fromEntries(
+        formatter
+          .formatToParts(new Date())
+          .filter(({ type }) => type !== "literal")
+          .map(({ type, value }) => [type, value]),
+      );
+      const today = `${dateParts.year}-${dateParts.month}-${dateParts.day}`;
+
+      if (today >= "2026-11-28") {
+        status.remove();
+      }
     })();
   </script>
 </Layout>
